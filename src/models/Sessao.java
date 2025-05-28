@@ -22,4 +22,9 @@ public class Sessao {
     public void cadeirasDisponiveis(){
         System.out.println("numero de cadeiras diponiveis - " + (sala.getnAssentos() - ingressos.size()));
     }
+
+    @override
+    public String toString(){
+        return this.filme.getTitulo() + " - horario: " + this.horario + " - Sala: " + this.sala.getLocalizacao();
+    }
 }
