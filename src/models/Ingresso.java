@@ -16,7 +16,21 @@ public class Ingresso {
         return tipo;
     }
 
+    public void setTipo(TipoIngresso tipo) {
+        this.tipo = tipo;
+    }
+
     public CategoriaIngresso getCategoria() {
         return categoria;
+    }
+
+    public void setCategoria(CategoriaIngresso categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingresso: " + getTipo() +
+                " - Categoria: " + getCategoria();
     }
 }

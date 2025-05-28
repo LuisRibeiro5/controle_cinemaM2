@@ -6,9 +6,9 @@ public class Sala {
     private String localizacao;
 
     Sala(int nAssentos, String tipoTela, String localizacao){
-        this.nAssentos = nAssentos;
-        this.tipoTela = tipoTela;
-        this.localizacao = localizacao;
+        setnAssentos(nAssentos);
+        setTipoTela(tipoTela);
+        setLocalizacao(localizacao);
     }
 
     public int getnAssentos() {
@@ -16,15 +16,9 @@ public class Sala {
     }
 
     public void setnAssentos(int nAssentos) {
-        this.nAssentos = nAssentos;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
+        if (nAssentos > 0){
+            this.nAssentos = nAssentos;
+        }
     }
 
     public String getTipoTela() {
@@ -32,6 +26,18 @@ public class Sala {
     }
 
     public void setTipoTela(String tipoTela) {
-        this.tipoTela = tipoTela;
+        if (!tipoTela.isBlank()){
+            this.tipoTela = tipoTela;
+        }
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        if (!localizacao.isBlank()){
+            this.localizacao = localizacao;
+        }
     }
 }
