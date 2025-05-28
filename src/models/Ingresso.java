@@ -4,12 +4,14 @@ import enums.TipoIngresso;
 import enums.CategoriaIngresso;
 
 public class Ingresso {
+    private Sessao sessao;
     private TipoIngresso tipo;
     private CategoriaIngresso categoria;
 
-    Ingresso(TipoIngresso tipo, CategoriaIngresso categoria){
+    Ingresso(TipoIngresso tipo, CategoriaIngresso categoria, Sessao sessao){
         this.tipo = tipo;
         this.categoria = categoria;
+        this.sessao = sessao;
     }
 
     public TipoIngresso getTipo() {
@@ -26,6 +28,10 @@ public class Ingresso {
 
     public void setCategoria(CategoriaIngresso categoria) {
         this.categoria = categoria;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
     }
 
     @Override

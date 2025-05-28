@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Sessao {
     private boolean estadoDaSessao;
     private int horario;
-    private ArrayList<Ingresso> ingressos;
+    private ArrayList<Ingresso> ingressosVendidos;
     private ArrayList<Sala> salas;
     private Filme filme;
 
@@ -17,7 +17,7 @@ public class Sessao {
 
         this.estadoDaSessao = true;
         setHorario(horario);
-        ingressos = new ArrayList<Ingresso>();
+        ingressosVendidos = new ArrayList<Ingresso>();
         setSalas(nAssentos, tipoTela, localizacao);
     }
 
@@ -50,6 +50,12 @@ public class Sessao {
         }
     }
 
+    public void addSala(int nAssentos, String tipoTela,
+                        String localizacao){
+
+        this.salas.add(new Sala(nAssentos, tipoTela, localizacao));
+    }
+
     public Filme getFilme() {
         return filme;
     }
@@ -68,4 +74,42 @@ public class Sessao {
         }
     }
 
+    public int getCadeirasDisponiveis(){
+        int cadeiras = 0;
+        for (Sala s : salas){
+            cadeiras += s.getnAssentos();
+        }
+
+        return cadeiras - ingressosVendidos.size();
+    }
+
+    public void addIngressoVendido(Ingresso ingresso){
+        this.ingressosVendidos.add(ingresso);
+    }
+
+    @Override
+    public String toString() {
+        String infoSalas = "";
+
+        for (Sala s : this.salas){
+            infoSalas += s.getLocalizacao() + " - ";
+
+        }
+
+        String estadoSessao = "INICIO " + getHorario() + ".";
+        if (!isSessaoAvailable()) estadoSessao = "EM ANDAMENTO.";
+
+        return String.format(
+                "%s\n" +
+                "Sessao de \"%s\"\n" +
+                "Salas: %s\n" +
+                "Horario: %d:00\n" +
+                "Cadeiras diponiveis: %d\n",
+                estadoSessao,
+                filme.getTitulo(),
+                infoSalas,
+                getHorario(),
+                getCadeirasDisponiveis()
+                );
+    }
 }

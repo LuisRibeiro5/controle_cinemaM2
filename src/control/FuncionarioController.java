@@ -8,14 +8,9 @@ import java.util.ArrayList;
 
 public class FuncionarioController {
 
-
-    public static Sessao criarSessao(boolean estadoDaSessao, int horario, Sala sala){
-        return new Sessao(estadoDaSessao, horario, sala );
-    }
-
     public static void vizualizarSessoesDoDia(ArrayList<Sessao> sessoes){
-        for (int i = 0; i < sessoes.size(); i++){
-            System.out.println(i + " - " + sessoes.get(i));
+        for (Sessao s : sessoes){
+            System.out.println(s);
         }
     }
 

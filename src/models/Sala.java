@@ -40,4 +40,11 @@ public class Sala {
             this.localizacao = localizacao;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Sala: " + getLocalizacao() +
+                " - nAssentos: " + getnAssentos() +
+                " - tipoTela: " + getTipoTela();
+    }
 }
