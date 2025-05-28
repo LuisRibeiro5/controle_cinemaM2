@@ -8,7 +8,7 @@ public class Ingresso {
     private TipoIngresso tipo;
     private CategoriaIngresso categoria;
 
-    Ingresso(TipoIngresso tipo, CategoriaIngresso categoria, Sessao sessao){
+    public Ingresso(TipoIngresso tipo, CategoriaIngresso categoria, Sessao sessao){
         this.tipo = tipo;
         this.categoria = categoria;
         this.sessao = sessao;

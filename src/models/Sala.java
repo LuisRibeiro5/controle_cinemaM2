@@ -5,7 +5,7 @@ public class Sala {
     private String tipoTela;
     private String localizacao;
 
-    Sala(int nAssentos, String tipoTela, String localizacao){
+    public Sala(int nAssentos, String tipoTela, String localizacao){
         setnAssentos(nAssentos);
         setTipoTela(tipoTela);
         setLocalizacao(localizacao);

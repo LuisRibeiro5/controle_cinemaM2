@@ -11,7 +11,7 @@ public class Sessao {
     private ArrayList<Sala> salas;
     private Filme filme;
 
-    Sessao(int horario, ArrayList<Integer> nAssentos,
+    public Sessao(int horario, ArrayList<Integer> nAssentos,
            ArrayList<String> tipoTela,
            ArrayList<String> localizacao){
 
@@ -19,6 +19,12 @@ public class Sessao {
         setHorario(horario);
         ingressosVendidos = new ArrayList<Ingresso>();
         setSalas(nAssentos, tipoTela, localizacao);
+    }
+
+    public Sessao(int horario, Sala salaUnica) {
+        if (salaUnica != null){
+            salas.add(salaUnica);
+        }
     }
 
     public boolean isSessaoAvailable() {
