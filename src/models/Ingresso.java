@@ -1,0 +1,35 @@
+package models;
+import enums.TipoIngresso;
+import enums.CategoriaIngresso;
+
+public class Ingresso {
+    private TipoIngresso tipo;
+    private CategoriaIngresso categoria;
+
+    public Ingresso(TipoIngresso tipo, CategoriaIngresso categoria){
+        this.tipo = tipo;
+        this.categoria = categoria;
+    }
+
+    public TipoIngresso getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoIngresso tipo) {
+        this.tipo = tipo;
+    }
+
+    public CategoriaIngresso getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaIngresso categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingresso: " + getTipo() +
+                "-Categoria: " + getCategoria();
+    }
+}
