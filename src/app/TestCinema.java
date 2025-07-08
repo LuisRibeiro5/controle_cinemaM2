@@ -6,6 +6,11 @@ import java.util.Scanner;
 import enums.*;
 import control.FuncionarioController;
 import models.*;
+import models.ingresso.Ingresso;
+import view.InputView;
+import view.MensagemView;
+import view.MenuView;
+import view.SessaoView;
 
 public class TestCinema {
     public static void main(String[] args){
@@ -27,30 +32,23 @@ public class TestCinema {
         boolean executando = true;
 
         while (executando) {
-            System.out.println("\n--- Sistema de Administração do Cinema ---");
-            System.out.println("1. Exibir Sessões Do Dia");
-            System.out.println("2. Vender Ingresso");
-            System.out.println("3. Encerrar Programa");
-            System.out.print("Escolha uma opção: ");
+            MenuView.exibirMenu();
+            int opcao = InputView.lerOpcao();
 
-            int opcao = lerInt(scanner);
             switch (opcao) {
-                case 1 -> FuncionarioController.vizualizarSessoesDoDia();
+                //visualizar sessoes do dia
+                case 1 -> SessaoView.exibirListaSessoes(FuncionarioController.getSessoes());
 
                 case 2 -> {
-                   FuncionarioController.vizualizarSessoesDoDia();
-                    System.out.print("Digite o horário da sessão desejada: ");
-                    int horario = scanner.nextInt();
-                    scanner.nextLine();
+                //vender ingresso
+                    SessaoView.exibirListaSessoes(FuncionarioController.getSessoes());
+                    int horario = InputView.lerHorarioSessao();
+                    String nomeFilme = InputView.lerTituloFilme();
 
-                    System.out.print("Digite o nome do filme: ");
-                    String nomeFilme = scanner.nextLine();
-
-                    Sessao sessaoSelecionada = null;
-                    sessaoSelecionada = FuncionarioController.buscarSessao(nomeFilme, horario);
+                    Sessao sessaoSelecionada = FuncionarioController.buscarSessao(nomeFilme, horario);
 
                     if (sessaoSelecionada == null) {
-                        System.out.println("Sessão não encontrada ou indisponível.");
+                        MensagemView.exibirErro("Sessão não encontrada ou indisponível.");
                         break;
                     }
 
@@ -61,7 +59,7 @@ public class TestCinema {
                     System.out.print("Categoria do ingresso (1 - Físico, 2 - Online): ");
                     int categoria = scanner.nextInt();
                     CategoriaIngresso categoriaIngresso = (categoria == 2) ?
-                            CategoriaIngresso.INGRESSO_ONLINE : CategoriaIngresso.INGRESSO_FISICO;
+                            CategoriaIngresso.ONLINE : CategoriaIngresso.FISICO;
 
                     Ingresso ingresso = FuncionarioController.venderIngresso(sessaoSelecionada,
                             tipoIngresso, categoriaIngresso);

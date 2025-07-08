@@ -1,5 +1,7 @@
 package models;
 
+import models.ingresso.Ingresso;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ public class Sessao {
     private ArrayList<Ingresso> ingressosVendidos;
     private ArrayList<Sala> salas;
     private Filme filme;
+    private double precoBase = 20;
 
     public Sessao(int horario, ArrayList<Integer> nAssentos,
            ArrayList<String> tipoTela,
@@ -18,13 +21,18 @@ public class Sessao {
         this.estadoDaSessao = true;
         setHorario(horario);
         ingressosVendidos = new ArrayList<Ingresso>();
+        salas = new ArrayList<Sala>();
         setSalas(nAssentos, tipoTela, localizacao);
     }
 
     public Sessao(int horario, Sala salaUnica) {
-        if (salaUnica != null){
-            salas.add(salaUnica);
-        }
+        this.estadoDaSessao = true;
+        setHorario(horario);
+        ingressosVendidos = new ArrayList<Ingresso>();
+        salas = new ArrayList<Sala>();
+
+        salas.add(salaUnica);
+
     }
 
     public boolean isSessaoAvailable() {
@@ -60,6 +68,10 @@ public class Sessao {
                         String localizacao){
 
         this.salas.add(new Sala(nAssentos, tipoTela, localizacao));
+    }
+
+    public double getPrecoBase(){
+        return precoBase;
     }
 
     public Filme getFilme() {

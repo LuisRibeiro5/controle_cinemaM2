@@ -3,11 +3,10 @@ package control;
 import enums.CategoriaIngresso;
 import enums.TipoIngresso;
 import models.Filme;
-import models.Ingresso;
+import models.ingresso.Ingresso;
 import models.Sala;
 import models.Sessao;
 
-import javax.swing.event.InternalFrameEvent;
 import java.util.ArrayList;
 
 public class FuncionarioController {
@@ -35,12 +34,6 @@ public class FuncionarioController {
         }
     }
 
-    public static void vizualizarSessoesDoDia(){
-        for (Sessao s : sessoes){
-            System.out.println(s);
-        }
-    }
-
     public static Sessao buscarSessao(String nomeFilme, int horario){
         for (Sessao s : sessoes){
             if (s.getFilme().getTitulo().equalsIgnoreCase(nomeFilme) && s.getHorario() == horario){
@@ -58,8 +51,10 @@ public class FuncionarioController {
             return ingresso;
         }
 
-        System.out.printf("Sessao Indisponivel.");
         return null;
+    }
 
+    public static ArrayList<Sessao> getSessoes(){
+        return sessoes;
     }
 }
