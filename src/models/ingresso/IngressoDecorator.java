@@ -1,9 +1,9 @@
 package models.ingresso;
 
 public abstract class IngressoDecorator implements InterfaceIngresso{
-    protected Ingresso ingressoDecorado;
+    protected InterfaceIngresso ingressoDecorado;
 
-    public IngressoDecorator(Ingresso ingresso){
+    public IngressoDecorator(InterfaceIngresso ingresso){
         ingressoDecorado = ingresso;
     }
 

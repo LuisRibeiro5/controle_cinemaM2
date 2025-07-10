@@ -1,11 +1,12 @@
 package control;
 
 import enums.CategoriaIngresso;
-import enums.TipoIngresso;
 import models.Filme;
-import models.ingresso.Ingresso;
+import models.ingresso.*;
 import models.Sala;
 import models.Sessao;
+import view.InputView;
+import view.MensagemView;
 
 import java.util.ArrayList;
 
@@ -43,11 +44,39 @@ public class FuncionarioController {
         return null;
     }
 
-    public static Ingresso venderIngresso(Sessao sessao, TipoIngresso tipo,
+    public static InterfaceIngresso venderIngresso(Sessao sessao,
                                           CategoriaIngresso categoria){
         if (sessao.isSessaoAvailable()){
-            Ingresso ingresso = new Ingresso(tipo, categoria, sessao);
+            InterfaceIngresso ingresso = new Ingresso(categoria, sessao);
+
+            boolean escolhendo = true;
+            while (escolhendo) {
+                int adicional = InputView.lerTipoIngresso();
+
+                switch (adicional) {
+                    case 1:
+                        ingresso = new IngressoMeia(ingresso);
+                        break;
+                    case 2:
+                        ingresso = new IngressoVip(ingresso);
+                        break;
+                    case 3:
+                        ingresso = new IngressoComPipoca(ingresso);
+                        break;
+                    case 0:
+                        escolhendo = false;
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                }
+                MensagemView.exibirInfo(adicional);
+            }
+
+
             sessao.addIngressoVendido(ingresso);
+
+            MensagemView.exibirSucesso("Seu ingresso foi adicionado com sucesso. \n" + ingresso.getDescricao() + " -" +
+                    " " + ingresso.getPreco());
             return ingresso;
         }
 

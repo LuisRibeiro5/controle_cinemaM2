@@ -1,6 +1,7 @@
 package models;
 
 import models.ingresso.Ingresso;
+import models.ingresso.InterfaceIngresso;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Sessao {
     private boolean estadoDaSessao;
     private int horario;
-    private ArrayList<Ingresso> ingressosVendidos;
+    private ArrayList<InterfaceIngresso> ingressosVendidos;
     private ArrayList<Sala> salas;
     private Filme filme;
     private double precoBase = 20;
@@ -20,7 +21,7 @@ public class Sessao {
 
         this.estadoDaSessao = true;
         setHorario(horario);
-        ingressosVendidos = new ArrayList<Ingresso>();
+        ingressosVendidos = new ArrayList<InterfaceIngresso>();
         salas = new ArrayList<Sala>();
         setSalas(nAssentos, tipoTela, localizacao);
     }
@@ -28,7 +29,7 @@ public class Sessao {
     public Sessao(int horario, Sala salaUnica) {
         this.estadoDaSessao = true;
         setHorario(horario);
-        ingressosVendidos = new ArrayList<Ingresso>();
+        ingressosVendidos = new ArrayList<InterfaceIngresso>();
         salas = new ArrayList<Sala>();
 
         salas.add(salaUnica);
@@ -101,7 +102,7 @@ public class Sessao {
         return cadeiras - ingressosVendidos.size();
     }
 
-    public void addIngressoVendido(Ingresso ingresso){
+    public void addIngressoVendido(InterfaceIngresso ingresso){
         this.ingressosVendidos.add(ingresso);
     }
 
@@ -118,16 +119,16 @@ public class Sessao {
         if (!isSessaoAvailable()) estadoSessao = "EM ANDAMENTO.";
 
         return String.format(
-                "%s\n" +
                 "Sessao de \"%s\"\n" +
                 "Salas: %s\n" +
                 "Horario: %d:00\n" +
-                "Cadeiras diponiveis: %d\n",
-                estadoSessao,
+                "Cadeiras diponiveis: %d\n" +
+                        "%s\n",
                 filme.getTitulo(),
                 infoSalas,
                 getHorario(),
-                getCadeirasDisponiveis()
+                getCadeirasDisponiveis(),
+                estadoSessao
                 );
     }
 }

@@ -1,7 +1,7 @@
 package models.ingresso;
 
 public class IngressoMeia extends IngressoDecorator{
-    public IngressoMeia(Ingresso ingresso){
+    public IngressoMeia(InterfaceIngresso ingresso){
         super(ingresso);
     }
 

@@ -1,7 +1,7 @@
 package models.ingresso;
 
 public class IngressoComPipoca extends IngressoDecorator{
-    public IngressoComPipoca(Ingresso ingresso){
+    public IngressoComPipoca(InterfaceIngresso ingresso){
         super(ingresso);
     }
 

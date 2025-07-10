@@ -7,6 +7,7 @@ import enums.*;
 import control.FuncionarioController;
 import models.*;
 import models.ingresso.Ingresso;
+import models.ingresso.InterfaceIngresso;
 import view.InputView;
 import view.MensagemView;
 import view.MenuView;
@@ -27,7 +28,7 @@ public class TestCinema {
         FuncionarioController.criarSessao(21, nAssentos, tipoTela, localizacao, filme1);
         FuncionarioController.criarSessao(22, new Sala(1, "3D", "4"), filme2);
 
-        ArrayList<Ingresso> ingressosComprados = new ArrayList<>();
+        ArrayList<InterfaceIngresso> ingressosComprados = new ArrayList<>();
 
         boolean executando = true;
 
@@ -52,17 +53,11 @@ public class TestCinema {
                         break;
                     }
 
-                    System.out.print("Tipo de ingresso (1 - Inteiro, 2 - Meia): ");
-                    int tipo = scanner.nextInt();
-                    TipoIngresso tipoIngresso = (tipo == 2) ? TipoIngresso.MEIA : TipoIngresso.INTEIRO;
-
-                    System.out.print("Categoria do ingresso (1 - Físico, 2 - Online): ");
-                    int categoria = scanner.nextInt();
+                    int categoria = InputView.lerCategoriaIngresso();
                     CategoriaIngresso categoriaIngresso = (categoria == 2) ?
                             CategoriaIngresso.ONLINE : CategoriaIngresso.FISICO;
 
-                    Ingresso ingresso = FuncionarioController.venderIngresso(sessaoSelecionada,
-                            tipoIngresso, categoriaIngresso);
+                    InterfaceIngresso ingresso = FuncionarioController.venderIngresso(sessaoSelecionada, categoriaIngresso);
 
                     if (ingresso != null){
                         ingressosComprados.add(ingresso);
@@ -70,11 +65,11 @@ public class TestCinema {
                 }
 
                 case 3 -> {
-                    System.out.println("Encerrando o sistema...");
+                    MensagemView.exibirInfo("Encerrando o sistema...");
                     executando = false;
                 }
 
-                default -> System.out.println("Opção inválida. Tente novamente.");
+                default -> MensagemView.exibirErro("Opção inválida. Tente novamente.");
             }
         }
 

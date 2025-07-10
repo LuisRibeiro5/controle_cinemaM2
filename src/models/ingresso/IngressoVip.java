@@ -1,7 +1,7 @@
 package models.ingresso;
 
 public class IngressoVip extends IngressoDecorator{
-    public IngressoVip(Ingresso ingresso){
+    public IngressoVip(InterfaceIngresso ingresso){
         super(ingresso);
     }
 

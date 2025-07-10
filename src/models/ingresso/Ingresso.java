@@ -1,23 +1,24 @@
 package models.ingresso;
 
+import enums.CategoriaIngresso;
 import enums.TipoIngresso;
 import models.Sessao;
 
 public class Ingresso implements InterfaceIngresso {
     private Sessao sessao;
-    private TipoIngresso tipo;
+    private CategoriaIngresso categoria;
 
-    public Ingresso(TipoIngresso tipo, Sessao sessao){
-        this.tipo = tipo;
+    public Ingresso(CategoriaIngresso categoria, Sessao sessao){
+        this.categoria = categoria;
         this.sessao = sessao;
     }
 
-    public TipoIngresso getTipo() {
-        return tipo;
+    public CategoriaIngresso getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(TipoIngresso tipo) {
-        this.tipo = tipo;
+    public void setCategoria(CategoriaIngresso categoria) {
+        this.categoria = categoria;
     }
 
     public Sessao getSessao() {
@@ -31,6 +32,6 @@ public class Ingresso implements InterfaceIngresso {
 
     @Override
     public String getDescricao() {
-        return "Ingresso: " + getTipo() + " Inteiro";
+        return "Ingresso: " + getCategoria() + " Inteiro";
     }
 }

@@ -7,7 +7,9 @@ public class InputView {
 
     public static int lerOpcao(){
         System.out.print("Escolha uma opção: ");
-        return scanner.nextInt();
+        String opcao = scanner.nextLine();
+        return Integer.parseInt(opcao);
+
     }
 
     public static String lerTituloFilme() {
@@ -17,16 +19,30 @@ public class InputView {
 
     public static int lerNumeroSala() {
         System.out.print("Digite o número da sala: ");
-        return scanner.nextInt();
+        String sala = scanner.nextLine();
+        return Integer.parseInt(sala);
     }
 
     public static int lerHorarioSessao(){
         System.out.print("Digite o horário da sessão desejada: ");
-        return scanner.nextInt();
+        String horas = scanner.nextLine();
+        return Integer.parseInt(horas);
     }
 
-    public static String lerTipoIngresso() {
-        System.out.print("Tipo do ingresso (meia, inteiro, vip): ");
-        return scanner.next();
+    public static int lerCategoriaIngresso(){
+        System.out.print("Categoria do ingresso (1 - Físico, 2 - Online): ");
+        String categoria = scanner.nextLine();
+        return Integer.parseInt(categoria);
+    }
+
+    public static int lerTipoIngresso(){
+        System.out.println("Escolha um adicional:");
+        System.out.println("1 - Meia Entrada");
+        System.out.println("2 - VIP");
+        System.out.println("3 - Pipoca");
+        System.out.println("0 - Finalizar compra");
+
+        String adicional = scanner.nextLine();
+        return Integer.parseInt(adicional);
     }
 }
